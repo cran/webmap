@@ -1,0 +1,16 @@
+utils::citHeader(sprintf("To cite %s in publications, please use:", meta[["Package"]]))
+
+utils::citEntry(
+  entry = "TechReport",
+  title = "webmap---Interactive web maps using The National Map (TNM) services",
+  author = "Jason C. Fisher",
+  institution = "U.S. Geological Survey",
+  type = "Software Release",
+  year = "2023",
+  note = sprintf("R package version %s", meta[["Version"]]),
+  address = "Reston, Va.",
+  doi = "10.5066/P9CPB1WD",
+  url = "https://doi.org/10.5066/P9CPB1WD",
+  key = "webmap-package",
+  textVersion = "Fisher, J.C., 2023, webmap---Interactive web maps using The National Map (TNM) services: U.S. Geological Survey software release, R package, Reston, Va., https://doi.org/10.5066/P9CPB1WD."
+)
