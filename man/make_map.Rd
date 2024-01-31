@@ -52,37 +52,37 @@ TNM base maps include:
 \item \code{Topo} combines the most current TNM data, and other public-domain data, into a multi-scale
 topographic reference map. Data includes boundaries, geographic names, transportation,
 contours, hydrography, land cover, shaded relief, and bathymetry.\if{html}{\out{<br/>}}
-\figure{basemap-topo.png}
+\if{latex}{\cr} \figure{basemap-topo.png}
 \item \verb{Imagery Only} is the orthoimagery in TNM. Orthoimagery data typically are high resolution aerial images
 that combine the visual attributes of an aerial photograph with the spatial accuracy and reliability of a
 planimetric map. USGS digital orthoimage resolution may vary from 6 inches to 1 meter.\if{html}{\out{<br/>}}
-\figure{basemap-imagery-only.png}
+\if{latex}{\cr} \figure{basemap-imagery-only.png}
 \item \verb{Imagery Topo} is the orthoimagery in TNM as a backdrop, and a limited selection of topographic data
 (boundaries, names, transportation, contours, and hydrography).\if{html}{\out{<br/>}}
-\figure{basemap-imagery-topo.png}
+\if{latex}{\cr} \figure{basemap-imagery-topo.png}
 \item \code{Hydrography} is a cartographic representation of the
 \href{https://www.usgs.gov/national-hydrography/national-hydrography-dataset}{National Hydrography Dataset} (NHD).
 The NHD is a comprehensive set of digital geospatial data that encodes information about naturally occurring
 and constructed bodies of surface water, paths through which water flows, related features such as
 stream gages and dams, and additional hydrologic information.\if{html}{\out{<br/>}}
-\figure{basemap-hydrography.png}
+\if{latex}{\cr} \figure{basemap-hydrography.png}
 \item \verb{Shaded Relief} is a terrain representation in the form of hillshades created from the
 \href{https://www.usgs.gov/3d-elevation-program}{3D Elevation Program} (3DEP). 3DEP maintains a seamless dataset
 of best available raster elevation data, in the form of digital elevation models (DEMs) for the conterminous
 United States, Alaska, Hawaii, and Territorial Islands of the United States.\if{html}{\out{<br/>}}
-\figure{basemap-shaded-relief.png}
+\if{latex}{\cr} \figure{basemap-shaded-relief.png}
 \item \code{Blank} consists of ocean tints to give the outline of land cover as an empty base map.\if{html}{\out{<br/>}}
-\figure{basemap-blank.png}
+\if{latex}{\cr} \figure{basemap-blank.png}
 }
 }
 \examples{
 # define arbitrary coordinate locations in decimal degrees
 pts <- rbind(
-  c(-112.049705, 43.517810),
-  c(-122.171257, 37.456526),
-  c( -77.367458, 38.947206),
-  c(-149.803565, 61.187905),
-  c( -80.248344, 26.080860)
+  c(-112.049, 43.517),
+  c(-122.171, 37.456),
+  c( -77.367, 38.947),
+  c(-149.803, 61.187),
+  c( -80.248, 26.080)
 )
 
 # create map widget and add markers at coordinate locations
@@ -95,10 +95,10 @@ map
 # print map of satellite imagery with a rectangle in the vicinity of UCLA
 make_map(c("Imagery Only", "Topo"), collapse = TRUE) |>
   leaflet::addRectangles(
-    lng1 = -118.456554,
-    lat1 =   34.078039,
-    lng2 = -118.436383,
-    lat2 =   34.062717,
+    lng1 = -118.456,
+    lat1 =   34.078,
+    lng2 = -118.436,
+    lat2 =   34.062,
     fillColor = "transparent"
   )
 }

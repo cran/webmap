@@ -8,33 +8,41 @@ webmap <img src="man/figures/logo.svg" alt="webmap" align="right" width="152px" 
 Description
 -----------
 
-The [R](https://www.r-project.org/) package **webmap** creates
-interactive web maps using the JavaScript
-[Leaflet](https://leafletjs.com/) library with base layers of [The
-National
+The [R](https://www.r-project.org/) package **webmap** is a tool that
+enables you to create interactive web maps using the JavaScript
+[Leaflet](https://leafletjs.com/) library. It comes with base layers of
+[The National
 Map](https://www.usgs.gov/programs/national-geospatial-program/national-map)
-(TNM). Map [service endpoints](https://apps.nationalmap.gov/services)
-are offered with no use restrictions and provide access to base
-geospatial information that describes the landscape of the United States
-and its territories. Base layers outside these areas are unavailable at
-higher spatial scales. This package is dependent on, and intended to be
-used with, the [Leaflet for R](https://rstudio.github.io/leaflet/)
-package. Various utility functions are included that allow you to
-augment your web map with additional elements.
+(TNM), which provides access to geospatial information about the
+landscape of the United States and its territories. However, it is
+important to note that base layers outside these areas are unavailable
+at higher spatial scales. The package is dependent on, and intended to
+be used with, the [Leaflet for R](https://rstudio.github.io/leaflet/)
+package. Additionally, the package includes various utility functions
+that allow you to augment your web map with additional elements. You can
+check the [TNM service status](https://stats.uptimerobot.com/gxzRZFARLZ)
+to confirm that the service is operational.
 
 Installation
 ------------
 
-The current release is available on
-[CRAN](https://CRAN.R-project.org/package=webmap), which you can install
-by running this command in your R console:
+To install the current release of the package from
+[CRAN](https://CRAN.R-project.org/package=webmap) you can use the
+following command in R:
 
 ``` r
 install.packages("webmap")
 ```
 
-To install the development version, you need to clone the repository and
-build from source, or run:
+To install the package along with its dependencies, which are required
+to run examples in the package help documentation, run:
+
+``` r
+install.packages("webmap", dependencies = TRUE)
+```
+
+To install the development version of the package, you need to clone the
+repository and build from source, or run the following commands:
 
 ``` r
 if (!requireNamespace("remotes")) install.packages("remotes")
@@ -46,21 +54,24 @@ remotes::install_gitlab(
 )
 ```
 
-Once installed, you can use this package at the R console, within [R
-Markdown](https://rmarkdown.rstudio.com/) documents, and within
-[Shiny](https://shiny.posit.co/) applications.
+After installing the package, you can use it in various contexts,
+including the R console, [R Markdown](https://rmarkdown.rstudio.com/)
+documents, and [Shiny](https://shiny.posit.co/) applications.
 
 Basic Usage
 -----------
 
-You can create the default web map and display it (a screenshot is shown
-below) by running these commands:
+To create the default web map and display it (the screenshot below
+showns the default web map), you can run the following commands:
 
 ``` r
 library("webmap")
 map <- make_map()
 map
 ```
+
+The screenshot below shows the default web map that is created by the
+above commands.
 
 ![](man/figures/screenshot.png)
 
@@ -74,8 +85,8 @@ help(package = "webmap")
 Authors
 -------
 
--   Jason C. Fisher ([ORCID iD
-    0000-0001-9032-8912](https://orcid.org/0000-0001-9032-8912))
+-   Jason C. Fisher (ORCID iD
+    [0000-0001-9032-8912](https://orcid.org/0000-0001-9032-8912))
 -   Stefano Cudini ([leaflet-search
     library](https://github.com/stefanocudini/leaflet-search))
 -   John Firebaugh ([Leaflet.fullscreen
@@ -100,10 +111,11 @@ Reston, Va.,
 Contributing
 ------------
 
-We welcome your contributions and suggestions for how to make these
-materials more useful to the community. Please feel free to comment on
-the [issue tracker](https://code.usgs.gov/inl/webmap/-/issues) or open a
-[merge request](https://code.usgs.gov/inl/webmap/-/merge_requests) to
+We value your contributions and suggestions on how to make these
+materials more useful to the community. Please feel free to share your
+thoughts by commenting on the [issue
+tracker](https://code.usgs.gov/inl/webmap/-/issues) or opening a [merge
+request](https://code.usgs.gov/inl/webmap/-/merge_requests) to
 contribute.
 
 Code of Conduct
@@ -192,14 +204,6 @@ DOI
 <tr>
 <th scope="row">
 Year published
-</th>
-<td>
-2023
-</td>
-</tr>
-<tr>
-<th scope="row">
-Year of version
 </th>
 <td>
 2023

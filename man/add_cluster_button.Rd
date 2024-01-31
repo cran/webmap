@@ -24,13 +24,11 @@ A new HTML web \code{map} with added element, an object of class 'leaflet'.
 Add a button to a \href{https://leafletjs.com/}{Leaflet} map to toggle marker clusters on and off.
 }
 \examples{
-# read city point locations from GeoJSON file
-city <- system.file("extdata/city.geojson", package = "webmap") |>
-  sf::st_read()
-
 # create web map and add button to toggle marker clusters on and off
 map <- make_map("Topo") |>
   leaflet::addMarkers(
+    lng = ~lng,
+    lat = ~lat,
     label = ~name,
     popup = ~name,
     clusterOptions = leaflet::markerClusterOptions(
@@ -38,7 +36,7 @@ map <- make_map("Topo") |>
     ),
     clusterId = "cluster",
     group = "marker",
-    data = city
+    data = us_cities
   ) |>
   add_cluster_button(cluster_id = "cluster")
 

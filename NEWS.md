@@ -1,3 +1,24 @@
+# webmap 1.0.7
+
+* Remove vignette fields from DESCRIPTION file.
+
+# webmap 1.0.6
+
+* Remove suggested **sf** package dependency.
+* Add `us_cities` dataset, locations of United States major cities.
+* Remove caching beacause of installation issues with the **leaflet.extras** package.
+
+# webmap 1.0.5
+
+* Add .renvignore file.
+
+# webmap 1.0.4
+
+* Add `cache` argument to the `make_map` function, used to cache base-map tiles locally in your browser.
+* Remove vignette from package.
+* Fix image layout in the PDF version of the help documentation for the `make_map` function.
+* Add `fig.width` and `fig.height` knitr chunk options in the package vignette.
+
 # webmap 1.0.3
 
 * In the DESCRIPTION file, write package names, software names, and API names in single quotes in

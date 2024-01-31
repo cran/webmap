@@ -25,17 +25,15 @@
 #' @export
 #'
 #' @examples
-#' # read city point locations from GeoJSON file
-#' city <- system.file("extdata/city.geojson", package = "webmap") |>
-#'   sf::st_read()
-#'
 #' # create web map and add button to search city names
 #' map <- make_map("Topo") |>
 #'   leaflet::addMarkers(
+#'     lng = ~lng,
+#'     lat = ~lat,
 #'     label = ~name,
 #'     popup = ~name,
 #'     group = "marker",
-#'     data = city
+#'     data = us_cities
 #'   ) |>
 #'   add_search_button(
 #'     group = "marker",

@@ -33,27 +33,27 @@
 #'   * `Topo` combines the most current TNM data, and other public-domain data, into a multi-scale
 #'     topographic reference map. Data includes boundaries, geographic names, transportation,
 #'     contours, hydrography, land cover, shaded relief, and bathymetry.<br/>
-#'     ![](basemap-topo.png)
+#'     \if{latex}{\cr} ![](basemap-topo.png)
 #'   * `Imagery Only` is the orthoimagery in TNM. Orthoimagery data typically are high resolution aerial images
 #'     that combine the visual attributes of an aerial photograph with the spatial accuracy and reliability of a
 #'     planimetric map. USGS digital orthoimage resolution may vary from 6 inches to 1 meter.<br/>
-#'     ![](basemap-imagery-only.png)
+#'     \if{latex}{\cr} ![](basemap-imagery-only.png)
 #'   * `Imagery Topo` is the orthoimagery in TNM as a backdrop, and a limited selection of topographic data
 #'     (boundaries, names, transportation, contours, and hydrography).<br/>
-#'     ![](basemap-imagery-topo.png)
+#'     \if{latex}{\cr} ![](basemap-imagery-topo.png)
 #'   * `Hydrography` is a cartographic representation of the
 #'     [National Hydrography Dataset](https://www.usgs.gov/national-hydrography/national-hydrography-dataset) (NHD).
 #'     The NHD is a comprehensive set of digital geospatial data that encodes information about naturally occurring
 #'     and constructed bodies of surface water, paths through which water flows, related features such as
 #'     stream gages and dams, and additional hydrologic information.<br/>
-#'     ![](basemap-hydrography.png)
+#'     \if{latex}{\cr} ![](basemap-hydrography.png)
 #'   * `Shaded Relief` is a terrain representation in the form of hillshades created from the
 #'     [3D Elevation Program](https://www.usgs.gov/3d-elevation-program) (3DEP). 3DEP maintains a seamless dataset
 #'     of best available raster elevation data, in the form of digital elevation models (DEMs) for the conterminous
 #'     United States, Alaska, Hawaii, and Territorial Islands of the United States.<br/>
-#'     ![](basemap-shaded-relief.png)
+#'     \if{latex}{\cr} ![](basemap-shaded-relief.png)
 #'   * `Blank` consists of ocean tints to give the outline of land cover as an empty base map.<br/>
-#'     ![](basemap-blank.png)
+#'     \if{latex}{\cr} ![](basemap-blank.png)
 #'
 #' @return An object of class 'leaflet', a hypertext markup language (HTML) map widget.
 #'   See example for instructions on how to add additional graphic layers
@@ -68,11 +68,11 @@
 #' @examples
 #' # define arbitrary coordinate locations in decimal degrees
 #' pts <- rbind(
-#'   c(-112.049705, 43.517810),
-#'   c(-122.171257, 37.456526),
-#'   c( -77.367458, 38.947206),
-#'   c(-149.803565, 61.187905),
-#'   c( -80.248344, 26.080860)
+#'   c(-112.049, 43.517),
+#'   c(-122.171, 37.456),
+#'   c( -77.367, 38.947),
+#'   c(-149.803, 61.187),
+#'   c( -80.248, 26.080)
 #' )
 #'
 #' # create map widget and add markers at coordinate locations
@@ -85,10 +85,10 @@
 #' # print map of satellite imagery with a rectangle in the vicinity of UCLA
 #' make_map(c("Imagery Only", "Topo"), collapse = TRUE) |>
 #'   leaflet::addRectangles(
-#'     lng1 = -118.456554,
-#'     lat1 =   34.078039,
-#'     lng2 = -118.436383,
-#'     lat2 =   34.062717,
+#'     lng1 = -118.456,
+#'     lat1 =   34.078,
+#'     lng2 = -118.436,
+#'     lat2 =   34.062,
 #'     fillColor = "transparent"
 #'   )
 
@@ -118,8 +118,8 @@ make_map <- function(maps,
     basemaps <- basemaps[match.arg(maps, names(basemaps), several.ok = TRUE)]
   }
 
-  # define attribution
-  att <- sprintf(
+  # set attribution
+  attribution <- sprintf(
     "<a href='%s' title='%s' target='_blank'>%s</a> | <a href='%s' title='%s' target='_blank'>%s</a>",
     "https://www.usgs.gov/",
     "United States Geological Survey",
@@ -129,40 +129,41 @@ make_map <- function(maps,
     "Policies"
   )
 
+  # set domain
+  domain <- "https://basemap.nationalmap.gov"
+
+  # set tile options
+  tile_options <- list(
+    "minZoom" = 3,
+    "maxZoom" = 16
+  )
+
   # initialize map widget
   map <- leaflet::leaflet(...)
-
-  # define domain
-  domain <- "https://basemap.nationalmap.gov"
 
   # add base map using web map tile service
   if (protocol == "WMTS") {
     url <- sprintf("%s/arcgis/rest/services/%s/MapServer/tile/{z}/{y}/{x}", domain, basemaps)
-    opt <- leaflet::tileOptions(minZoom = 3, maxZoom = 16)
     for (i in seq_along(basemaps)) {
       map <- leaflet::addTiles(map,
         urlTemplate = url[i],
-        attribution = att,
+        attribution = attribution,
         group = names(basemaps)[i],
-        options = opt
+        options = do.call(leaflet::tileOptions, tile_options)
       )
     }
 
   # add base map using web map service
   } else if (protocol == "WMS") {
     url <- sprintf("%s/arcgis/services/%s/MapServer/WmsServer?", domain, basemaps)
-    opt <- leaflet::WMSTileOptions(
-      format = "image/jpeg",
-      version = "1.3.0",
-      minZoom = 3,
-      maxZoom = 16
-    )
+    tile_options[["format"]] <- "image/jpeg"
+    tile_options[["version"]] <- "1.3.0"
     for (i in seq_along(basemaps)) {
       map <- leaflet::addWMSTiles(map,
         baseUrl = url[i],
         group = names(basemaps)[i],
-        options = opt,
-        attribution = att,
+        options = do.call(leaflet::WMSTileOptions, tile_options),
+        attribution = attribution,
         layers = "0"
       )
     }

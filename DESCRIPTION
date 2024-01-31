@@ -1,6 +1,6 @@
 Package: webmap
 Title: Create Interactive Web Maps Using 'The National Map' Services
-Version: 1.0.3
+Version: 1.0.7
 Authors@R: c(
       person(given = c("Jason", "C."),
              family = "Fisher",
@@ -23,21 +23,21 @@ Description: Creates interactive web maps using the 'JavaScript' 'Leaflet'
     intended to be used with, the 'leaflet' package.
 Depends: R (>= 4.1)
 Imports: checkmate, htmltools, htmlwidgets, leaflet
-Suggests: connectapi, covr, DT, knitr, pkgbuild, pkgdown, pkgload,
-        rcmdcheck, remotes, roxygen2, sf, tinytest
+Suggests: connectapi, covr, knitr, pkgbuild, pkgdown, pkgload,
+        rcmdcheck, remotes, renv, roxygen2, tinytest
 License: MIT + file LICENSE
 URL: https://rconnect.usgs.gov/INLPO/webmap-main/,
         https://code.usgs.gov/inl/webmap
 BugReports: https://code.usgs.gov/inl/webmap/-/issues
 Encoding: UTF-8
-VignetteBuilder: knitr
-BuildVignettes: true
-RoxygenNote: 7.2.3
+LazyData: true
+LazyDataCompression: xz
+RoxygenNote: 7.3.1
 NeedsCompilation: no
-Packaged: 2023-09-01 00:13:55 UTC; jfisher
+Packaged: 2024-01-31 08:12:48 UTC; jfisher
 Author: Jason C. Fisher [aut, cre] (<https://orcid.org/0000-0001-9032-8912>),
   Stefano Cudini [ctb, cph] (leaflet-search library),
   John Firebaugh [ctb, cph] (Leaflet.fullscreen library)
 Maintainer: Jason C. Fisher <jfisher@usgs.gov>
 Repository: CRAN
-Date/Publication: 2023-09-01 11:30:02 UTC
+Date/Publication: 2024-01-31 08:40:02 UTC

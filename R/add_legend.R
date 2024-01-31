@@ -25,27 +25,23 @@
 #' @export
 #'
 #' @examples
-#' # read city point locations from GeoJSON file
-#' city <- system.file("extdata/city.geojson", package = "webmap") |>
-#'   sf::st_read()
-#'
 #' # define marker colors based on whether a city serves as a capital
-#' color <- c(
-#'   "Non-capital" = "green",
-#'   "Capital" = "red"
-#' )
+#' color <- c("Non-capital" = "green", "Capital" = "red")
+#' fill_color <- color[(us_cities$capital > 0) + 1L] |> as.character()
 #'
 #' # print web map with city circle markers and legend
 #' make_map("Topo") |>
 #'   leaflet::addCircleMarkers(
+#'     lng = ~lng,
+#'     lat = ~lat,
 #'     radius = 6,
 #'     color = "white",
 #'     weight = 1,
 #'     opacity = 1,
-#'     fillColor = as.character(color[(city$capital > 0) + 1]),
+#'     fillColor = fill_color,
 #'     fillOpacity = 1,
 #'     fill = TRUE,
-#'     data = city
+#'     data = us_cities
 #'   ) |>
 #'   add_legend(
 #'     labels = names(color),
