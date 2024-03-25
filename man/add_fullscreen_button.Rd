@@ -15,7 +15,7 @@ Whether to fullscreen to page width and height.}
 
 \item{position}{'character' string.
 Position of the button on the web map.
-Possible values are \code{"topleft"}, \code{"topright"}, \code{"bottomleft"}, and \code{"bottomright"}.}
+Possible values are "topleft", "topright", "bottomleft", and "bottomright".}
 }
 \value{
 A new HTML web \code{map} with added element, an object of class 'leaflet'.
@@ -26,7 +26,8 @@ Functionality provided by the \href{https://github.com/Leaflet/Leaflet.fullscree
 plugin for Leaflet.
 }
 \examples{
-make_map("Topo") |> add_fullscreen_button()
+make_map(maps = "Topo") |>
+  add_fullscreen_button()
 }
 \seealso{
 \code{\link{make_map}} function for creating a map widget.

@@ -12,7 +12,7 @@
 #' @param opacity 'numeric' number.
 #'   Opacity of symbols in the legend, from 0 to 1.
 #' @param symbol 'character' string.
-#'   Symbol type in the legend, either `"square"` or `"circle"`.
+#'   Symbol type in the legend, either "square" or "circle".
 #' @param title 'character' string.
 #'   Legend title
 #'
@@ -26,11 +26,15 @@
 #'
 #' @examples
 #' # define marker colors based on whether a city serves as a capital
-#' color <- c("Non-capital" = "green", "Capital" = "red")
-#' fill_color <- color[(us_cities$capital > 0) + 1L] |> as.character()
+#' colors <- c(
+#'   "Non-capital" = "green",
+#'   "Capital" = "red"
+#' )
+#' fill_colors <- colors[(us_cities$capital > 0) + 1L] |>
+#'   as.character()
 #'
-#' # print web map with city circle markers and legend
-#' make_map("Topo") |>
+#' # print map with city circle markers and a map legend
+#' make_map(maps = "Topo") |>
 #'   leaflet::addCircleMarkers(
 #'     lng = ~lng,
 #'     lat = ~lat,
@@ -38,14 +42,14 @@
 #'     color = "white",
 #'     weight = 1,
 #'     opacity = 1,
-#'     fillColor = fill_color,
+#'     fillColor = fill_colors,
 #'     fillOpacity = 1,
 #'     fill = TRUE,
 #'     data = us_cities
 #'   ) |>
 #'   add_legend(
-#'     labels = names(color),
-#'     colors = color,
+#'     labels = names(colors),
+#'     colors = colors,
 #'     radius = 5,
 #'     opacity = 1,
 #'     symbol = "circle"

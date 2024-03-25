@@ -15,7 +15,7 @@ Identification for the marker cluster layer.}
 
 \item{position}{'character' string.
 Position of the button on the web map.
-Possible values are \code{"topleft"}, \code{"topright"}, \code{"bottomleft"}, and \code{"bottomright"}.}
+Possible values are "topleft", "topright", "bottomleft", and "bottomright".}
 }
 \value{
 A new HTML web \code{map} with added element, an object of class 'leaflet'.
@@ -24,8 +24,7 @@ A new HTML web \code{map} with added element, an object of class 'leaflet'.
 Add a button to a \href{https://leafletjs.com/}{Leaflet} map to toggle marker clusters on and off.
 }
 \examples{
-# create web map and add button to toggle marker clusters on and off
-map <- make_map("Topo") |>
+make_map(maps = "Topo") |>
   leaflet::addMarkers(
     lng = ~lng,
     lat = ~lat,
@@ -39,9 +38,6 @@ map <- make_map("Topo") |>
     data = us_cities
   ) |>
   add_cluster_button(cluster_id = "cluster")
-
-# print web map
-map
 }
 \seealso{
 \code{\link{make_map}} function for creating a map widget.

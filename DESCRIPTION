@@ -1,6 +1,6 @@
 Package: webmap
 Title: Create Interactive Web Maps Using 'The National Map' Services
-Version: 1.0.7
+Version: 1.1.0
 Authors@R: c(
       person(given = c("Jason", "C."),
              family = "Fisher",
@@ -34,10 +34,10 @@ LazyData: true
 LazyDataCompression: xz
 RoxygenNote: 7.3.1
 NeedsCompilation: no
-Packaged: 2024-01-31 08:12:48 UTC; jfisher
+Packaged: 2024-03-25 17:17:18 UTC; jfisher
 Author: Jason C. Fisher [aut, cre] (<https://orcid.org/0000-0001-9032-8912>),
   Stefano Cudini [ctb, cph] (leaflet-search library),
   John Firebaugh [ctb, cph] (Leaflet.fullscreen library)
 Maintainer: Jason C. Fisher <jfisher@usgs.gov>
 Repository: CRAN
-Date/Publication: 2024-01-31 08:40:02 UTC
+Date/Publication: 2024-03-25 20:50:02 UTC

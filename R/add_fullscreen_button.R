@@ -17,7 +17,8 @@
 #' @export
 #'
 #' @examples
-#' make_map("Topo") |> add_fullscreen_button()
+#' make_map(maps = "Topo") |>
+#'   add_fullscreen_button()
 
 add_fullscreen_button <- function(map,
                                   pseudo_fullscreen = FALSE,

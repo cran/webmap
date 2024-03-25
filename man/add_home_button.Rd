@@ -19,7 +19,7 @@ latitudes and longitudes of the map elements.}
 
 \item{position}{'character' string.
 Position of the button on the web map.
-Possible values are \code{"topleft"}, \code{"topright"}, \code{"bottomleft"}, and \code{"bottomright"}.}
+Possible values are "topleft", "topright", "bottomleft", and "bottomright".}
 }
 \value{
 A new HTML web \code{map} with added element, an object of class 'leaflet'.
@@ -28,9 +28,9 @@ A new HTML web \code{map} with added element, an object of class 'leaflet'.
 Add a button to a \href{https://leafletjs.com/}{Leaflet} map that zooms to the provided map extent.
 }
 \examples{
-make_map("Topo") |>
+make_map(maps = "Topo") |>
   add_home_button(
-    extent = c(-124.409591, -114.131211, 32.534156, 42.009518) # California
+    extent = c(-124.409, -114.131, 32.534, 42.009) # California
   )
 }
 \seealso{

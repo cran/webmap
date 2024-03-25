@@ -1,58 +1,61 @@
 #' Create a web map using TNM services
 #'
-#' Create a [Leaflet](https://leafletjs.com/) map widget with base maps offered through
-#' The National Map ([TNM](https://www.usgs.gov/programs/national-geospatial-program/national-map)).
+#' Create a [Leaflet](https://leafletjs.com/) map widget that includes base maps offered through
+#' [The National Map](https://www.usgs.gov/programs/national-geospatial-program/national-map) (TNM)
+#' cached [service endpoints](https://apps.nationalmap.gov/services).
 #' Information about the content of these base maps can be found within the
 #' [TNM Base Maps](https://apps.nationalmap.gov/help/3.0%20TNM%20Base%20Maps.htm) document.
+#' TNM content is limited to the United States and territories.
 #' The map widget can be rendered on HTML pages generated from R Markdown, Shiny, or other applications.
 #'
 #' @param maps 'character' vector.
 #'   TNM base maps to include in the web map. Choices include
-#'   `"Topo"`, `"Imagery Only"`, `"Imagery Topo"`, `"Hydrography"`, `"Shaded Relief"`, and `"Blank"`.
+#'   "Topo", "Imagery", "Imagery Topo", "Hydrography", "Shaded Relief", and "Blank".
 #'   See 'Details' section for a description of each base map.
 #'   By default, all base maps are included.
-#'   The one exception is the `"Blank"` map,
+#'   The one exception is the "Blank" map,
 #'   which is only accessible using a Web Map Service (WMS),
 #'   see `protocol` argument.
 #' @param ...
-#'   Arguments to be passed to the [`leaflet::leaflet`] function.
+#'   Arguments to be passed to the [`leaflet`][leaflet::leaflet] function.
 #' @param protocol 'character' string.
 #'   Standard protocol for serving pre-rendered georeferenced TNM map tiles.
-#'   Select `"WMTS"` for the Web Map Tile Service (the default) and `"WMS"` for the Web Map Service.
+#'   Select "WMTS" for the Web Map Tile Service (the default) and "WMS" for the Web Map Service.
+#' @param hydro 'logical' flag.
+#'   Whether to show or hide (the default) the "Hydrography" overlay base map.
 #' @param collapse 'logical' flag.
 #'   Whether the layers control should be rendered as an icon that expands when hovered over.
 #'   Default is `FALSE`.
 #'
-#' @details Map [service endpoints](https://apps.nationalmap.gov/services)
-#'   are offered through TNM with no use restrictions.
-#'   However, map content is limited to the United States and territories.
-#'   This function integrates TNM endpoint services within an interactive web map using
-#'   [Leaflet for R](https://rstudio.github.io/leaflet/).
-#'
-#'   TNM base maps include:
-#'   * `Topo` combines the most current TNM data, and other public-domain data, into a multi-scale
-#'     topographic reference map. Data includes boundaries, geographic names, transportation,
+#' @details Composite base maps include:
+#'   * "Topo" a tile base map that combines the most current TNM data,
+#'     and other public-domain data, into a multi-scale topographic reference map.
+#'     Data includes boundaries, geographic names, transportation,
 #'     contours, hydrography, land cover, shaded relief, and bathymetry.<br/>
 #'     \if{latex}{\cr} ![](basemap-topo.png)
-#'   * `Imagery Only` is the orthoimagery in TNM. Orthoimagery data typically are high resolution aerial images
-#'     that combine the visual attributes of an aerial photograph with the spatial accuracy and reliability of a
-#'     planimetric map. USGS digital orthoimage resolution may vary from 6 inches to 1 meter.<br/>
-#'     \if{latex}{\cr} ![](basemap-imagery-only.png)
-#'   * `Imagery Topo` is the orthoimagery in TNM as a backdrop, and a limited selection of topographic data
+#'   * "Imagery" is a tile base map of orthoimagery in TNM.
+#'     Orthoimagery data typically are high resolution aerial images that combine the
+#'     visual attributes of an aerial photograph with the spatial accuracy and reliability of a planimetric map.
+#'     USGS digital orthoimage resolution may vary from 6 inches to 1 meter.<br/>
+#'     \if{latex}{\cr} ![](basemap-imagery.png)
+#'   * "Imagery Topo" is a tile base map of orthoimagery in TNM as a backdrop,
+#'     and a limited selection of topographic data
 #'     (boundaries, names, transportation, contours, and hydrography).<br/>
 #'     \if{latex}{\cr} ![](basemap-imagery-topo.png)
-#'   * `Hydrography` is a cartographic representation of the
+#'   * "Hydrography" is a overlay of cartographic representation of the
 #'     [National Hydrography Dataset](https://www.usgs.gov/national-hydrography/national-hydrography-dataset) (NHD).
 #'     The NHD is a comprehensive set of digital geospatial data that encodes information about naturally occurring
 #'     and constructed bodies of surface water, paths through which water flows, related features such as
 #'     stream gages and dams, and additional hydrologic information.<br/>
 #'     \if{latex}{\cr} ![](basemap-hydrography.png)
-#'   * `Shaded Relief` is a terrain representation in the form of hillshades created from the
+#'   * "Shaded Relief" is a tile base map of terrain representation in the form of hillshades created from the
 #'     [3D Elevation Program](https://www.usgs.gov/3d-elevation-program) (3DEP). 3DEP maintains a seamless dataset
 #'     of best available raster elevation data, in the form of digital elevation models (DEMs) for the conterminous
 #'     United States, Alaska, Hawaii, and Territorial Islands of the United States.<br/>
 #'     \if{latex}{\cr} ![](basemap-shaded-relief.png)
-#'   * `Blank` consists of ocean tints to give the outline of land cover as an empty base map.<br/>
+#'   * "OSM" is the [OpenStreetMap](https://www.openstreetmap.org/about) tile base map.<br/>
+#'     \if{latex}{\cr} ![](basemap-osm.png)
+#'   * "Blank" consists of ocean tints to give the outline of land cover as an empty base map.<br/>
 #'     \if{latex}{\cr} ![](basemap-blank.png)
 #'
 #' @return An object of class 'leaflet', a hypertext markup language (HTML) map widget.
@@ -66,7 +69,13 @@
 #' @export
 #'
 #' @examples
-#' # define arbitrary coordinate locations in decimal degrees
+#' # Create map widget
+#' map <- make_map()
+#'
+#' # Print map widget
+#' map
+#'
+#' # Print map with markers
 #' pts <- rbind(
 #'   c(-112.049, 43.517),
 #'   c(-122.171, 37.456),
@@ -74,16 +83,16 @@
 #'   c(-149.803, 61.187),
 #'   c( -80.248, 26.080)
 #' )
+#' leaflet::addMarkers(map,
+#'   lng = pts[, 1],
+#'   lat = pts[, 2]
+#' )
 #'
-#' # create map widget and add markers at coordinate locations
-#' map <- make_map() |>
-#'   leaflet::addMarkers(pts[, 1], pts[, 2])
-#'
-#' # print map widget
-#' map
-#'
-#' # print map of satellite imagery with a rectangle in the vicinity of UCLA
-#' make_map(c("Imagery Only", "Topo"), collapse = TRUE) |>
+#' # Print map of satellite imagery with a rectangle in the vicinity of UCLA
+#' make_map(
+#'   maps = "Imagery",
+#'   collapse = TRUE
+#' ) |>
 #'   leaflet::addRectangles(
 #'     lng1 = -118.456,
 #'     lat1 =   34.078,
@@ -95,87 +104,141 @@
 make_map <- function(maps,
                      ...,
                      protocol = c("WMTS", "WMS"),
+                     hydro = FALSE,
                      collapse = FALSE) {
 
   # check arguments
   protocol <- match.arg(protocol)
+  checkmate::assert_flag(hydro)
   checkmate::assert_flag(collapse)
 
   # set baese maps
   basemaps <- c(
     "Topo" = "USGSTopo",
-    "Imagery Only" = "USGSImageryOnly",
+    "Imagery" = "USGSImageryOnly",
     "Imagery Topo" = "USGSImageryTopo",
     "Hydrography" = "USGSHydroCached",
     "Shaded Relief" = "USGSShadedReliefOnly",
+    "OSM" = "OpenStreetMap",
     "Blank" = "USGSTNMBlank"
   )
   if (missing(maps)) {
+    maps <- names(basemaps)
     if (protocol == "WMTS") {
-      basemaps <- basemaps[names(basemaps) != "Blank"]
+      maps <- maps[maps != "Blank"]
     }
-  } else {
-    basemaps <- basemaps[match.arg(maps, names(basemaps), several.ok = TRUE)]
   }
+  checkmate::assert_character(maps, any.missing = FALSE, min.len = 1)
+  maps <- match.arg(maps, choices = names(basemaps), several.ok = TRUE)
+  basemaps <- basemaps[maps]
+
+  # subset TNM base maps
+  tnm_basemaps <- basemaps[maps != "OSM"]
 
   # set attribution
-  attribution <- sprintf(
-    "<a href='%s' title='%s' target='_blank'>%s</a> | <a href='%s' title='%s' target='_blank'>%s</a>",
-    "https://www.usgs.gov/",
-    "United States Geological Survey",
-    "USGS",
-    "https://www.usgs.gov/laws/policies_notices.html",
-    "USGS policies and notices",
-    "Policies"
+  hyperlinks <- c(
+    "USGS" = format(
+      htmltools::tags$a(
+        "USGS",
+        href = "https://www.usgs.gov/laws/policies_notices.html",
+        title = "Policies and Notices",
+        target = "_blank"
+      )
+    ),
+    "TNM" = format(
+      htmltools::tags$a(
+        "TNM",
+        href = "https://www.usgs.gov/programs/national-geospatial-program/national-map",
+        title = "The National Map",
+        target = "_blank"
+      )
+    ),
+    "OSM" = paste(
+      "\U00A9",
+      htmltools::tags$a(
+        "OpenStreetMap",
+        href = "https://www.openstreetmap.org/copyright",
+        title = "Copyright and License",
+        target = "_blank"
+      )
+    )
   )
+  if (length(tnm_basemaps) == 0) {
+    hyperlinks <- hyperlinks["OSM"]
+  } else if (!"OSM" %in% maps) {
+    hyperlinks <- hyperlinks[c("USGS", "TNM")]
+  }
+  attr <- paste(hyperlinks, collapse = " | ")
 
-  # set domain
-  domain <- "https://basemap.nationalmap.gov"
-
-  # set tile options
-  tile_options <- list(
-    "minZoom" = 3,
-    "maxZoom" = 16
-  )
+  # initialize tile options
+  opt <- leaflet::tileOptions(minZoom = 3)
 
   # initialize map widget
   map <- leaflet::leaflet(...)
 
+  # add OpenStreetMap layer
+  if ("OSM" %in% maps) {
+    map <- leaflet::addTiles(map,
+      group = "OSM",
+      attribution = attr,
+      options = opt
+    )
+  }
+
+  # set domain
+  domain <- "https://basemap.nationalmap.gov"
+
+  # set maximum zoom
+  opt[["maxZoom"]] <- 16
+
   # add base map using web map tile service
   if (protocol == "WMTS") {
-    url <- sprintf("%s/arcgis/rest/services/%s/MapServer/tile/{z}/{y}/{x}", domain, basemaps)
-    for (i in seq_along(basemaps)) {
+    url <- sprintf("%s/arcgis/rest/services/%s/MapServer/tile/{z}/{y}/{x}", domain, tnm_basemaps)
+    for (i in seq_along(tnm_basemaps)) {
       map <- leaflet::addTiles(map,
         urlTemplate = url[i],
-        attribution = attribution,
-        group = names(basemaps)[i],
-        options = do.call(leaflet::tileOptions, tile_options)
+        attribution = attr,
+        group = names(tnm_basemaps)[i],
+        options = opt
       )
     }
 
   # add base map using web map service
   } else if (protocol == "WMS") {
-    url <- sprintf("%s/arcgis/services/%s/MapServer/WmsServer?", domain, basemaps)
-    tile_options[["format"]] <- "image/jpeg"
-    tile_options[["version"]] <- "1.3.0"
-    for (i in seq_along(basemaps)) {
+    url <- sprintf("%s/arcgis/services/%s/MapServer/WmsServer?", domain, tnm_basemaps)
+    opt[["format"]] <- "image/jpeg"
+    opt[["version"]] <- "1.3.0"
+    for (i in seq_along(tnm_basemaps)) {
       map <- leaflet::addWMSTiles(map,
         baseUrl = url[i],
-        group = names(basemaps)[i],
-        options = do.call(leaflet::WMSTileOptions, tile_options),
-        attribution = attribution,
+        group = names(tnm_basemaps)[i],
+        options = opt,
+        attribution = attr,
         layers = "0"
       )
     }
   }
 
-  # add basemap control feature
-  if (length(basemaps) > 1) {
+  # add layer control
+  if (length(maps) > 1) {
+
+    # set groups
+    is <- maps == "Hydrography"
+    overlay_groups <- maps[is]
+    base_groups <- maps[!is]
+
+    # add widget
     map <- leaflet::addLayersControl(map,
       position = "topright",
-      baseGroups = names(basemaps),
+      baseGroups = base_groups,
+      overlayGroups = overlay_groups,
       options = leaflet::layersControlOptions(collapsed = collapse)
     )
+
+    # hide hydrography layer
+    if (!hydro) {
+      map <- leaflet::hideGroup(map, group = "Hydrography")
+    }
   }
 
   # add scale bar

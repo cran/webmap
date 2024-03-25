@@ -32,14 +32,14 @@ Border radius of symbols in the legend, in pixels.}
 Opacity of symbols in the legend, from 0 to 1.}
 
 \item{symbol}{'character' string.
-Symbol type in the legend, either \code{"square"} or \code{"circle"}.}
+Symbol type in the legend, either "square" or "circle".}
 
 \item{title}{'character' string.
 Legend title}
 
 \item{position}{'character' string.
 Position of the button on the web map.
-Possible values are \code{"topleft"}, \code{"topright"}, \code{"bottomleft"}, and \code{"bottomright"}.}
+Possible values are "topleft", "topright", "bottomleft", and "bottomright".}
 }
 \value{
 A new HTML web \code{map} with added element, an object of class 'leaflet'.
@@ -49,11 +49,15 @@ Add a legend to a \href{https://leafletjs.com/}{Leaflet} map.
 }
 \examples{
 # define marker colors based on whether a city serves as a capital
-color <- c("Non-capital" = "green", "Capital" = "red")
-fill_color <- color[(us_cities$capital > 0) + 1L] |> as.character()
+colors <- c(
+  "Non-capital" = "green",
+  "Capital" = "red"
+)
+fill_colors <- colors[(us_cities$capital > 0) + 1L] |>
+  as.character()
 
-# print web map with city circle markers and legend
-make_map("Topo") |>
+# print map with city circle markers and a map legend
+make_map(maps = "Topo") |>
   leaflet::addCircleMarkers(
     lng = ~lng,
     lat = ~lat,
@@ -61,14 +65,14 @@ make_map("Topo") |>
     color = "white",
     weight = 1,
     opacity = 1,
-    fillColor = fill_color,
+    fillColor = fill_colors,
     fillOpacity = 1,
     fill = TRUE,
     data = us_cities
   ) |>
   add_legend(
-    labels = names(color),
-    colors = color,
+    labels = names(colors),
+    colors = colors,
     radius = 5,
     opacity = 1,
     symbol = "circle"

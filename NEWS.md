@@ -1,3 +1,11 @@
+# webmap 1.1.0
+
+* Add [OpenStreetMap](https://www.openstreetmap.org/about) (OSM) tiled base map.
+* Update Leaflet Control Search plugin from `v3.0.9` to `v4.0.0`.
+* Rename base map from "Imagery Only" to "Imagery".
+* Toggle visibility of the "Hydrography" base map using an overlay option.
+* Update fullscreen icon in leaflet-fullscreen plugin.
+
 # webmap 1.0.7
 
 * Remove vignette fields from DESCRIPTION file.

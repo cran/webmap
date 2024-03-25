@@ -15,8 +15,7 @@
 #' @export
 #'
 #' @examples
-#' # create web map and add button to toggle marker clusters on and off
-#' map <- make_map("Topo") |>
+#' make_map(maps = "Topo") |>
 #'   leaflet::addMarkers(
 #'     lng = ~lng,
 #'     lat = ~lat,
@@ -30,9 +29,6 @@
 #'     data = us_cities
 #'   ) |>
 #'   add_cluster_button(cluster_id = "cluster")
-#'
-#' # print web map
-#' map
 
 add_cluster_button <- function(map,
                                cluster_id,

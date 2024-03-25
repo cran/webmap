@@ -4,23 +4,32 @@
 \alias{make_map}
 \title{Create a web map using TNM services}
 \usage{
-make_map(maps, ..., protocol = c("WMTS", "WMS"), collapse = FALSE)
+make_map(
+  maps,
+  ...,
+  protocol = c("WMTS", "WMS"),
+  hydro = FALSE,
+  collapse = FALSE
+)
 }
 \arguments{
 \item{maps}{'character' vector.
 TNM base maps to include in the web map. Choices include
-\code{"Topo"}, \code{"Imagery Only"}, \code{"Imagery Topo"}, \code{"Hydrography"}, \code{"Shaded Relief"}, and \code{"Blank"}.
+"Topo", "Imagery", "Imagery Topo", "Hydrography", "Shaded Relief", and "Blank".
 See 'Details' section for a description of each base map.
 By default, all base maps are included.
-The one exception is the \code{"Blank"} map,
+The one exception is the "Blank" map,
 which is only accessible using a Web Map Service (WMS),
 see \code{protocol} argument.}
 
-\item{...}{Arguments to be passed to the \code{\link[leaflet:leaflet]{leaflet::leaflet}} function.}
+\item{...}{Arguments to be passed to the \code{\link[leaflet:leaflet]{leaflet}} function.}
 
 \item{protocol}{'character' string.
 Standard protocol for serving pre-rendered georeferenced TNM map tiles.
-Select \code{"WMTS"} for the Web Map Tile Service (the default) and \code{"WMS"} for the Web Map Service.}
+Select "WMTS" for the Web Map Tile Service (the default) and "WMS" for the Web Map Service.}
+
+\item{hydro}{'logical' flag.
+Whether to show or hide (the default) the "Hydrography" overlay base map.}
 
 \item{collapse}{'logical' flag.
 Whether the layers control should be rendered as an icon that expands when hovered over.
@@ -34,49 +43,56 @@ Graphic layers added to the web map must be in latitude and longitude using WGS 
 (also known as \href{https://epsg.io/4326}{EPSG:4326}).
 }
 \description{
-Create a \href{https://leafletjs.com/}{Leaflet} map widget with base maps offered through
-The National Map (\href{https://www.usgs.gov/programs/national-geospatial-program/national-map}{TNM}).
+Create a \href{https://leafletjs.com/}{Leaflet} map widget that includes base maps offered through
+\href{https://www.usgs.gov/programs/national-geospatial-program/national-map}{The National Map} (TNM)
+cached \href{https://apps.nationalmap.gov/services}{service endpoints}.
 Information about the content of these base maps can be found within the
 \href{https://apps.nationalmap.gov/help/3.0\%20TNM\%20Base\%20Maps.htm}{TNM Base Maps} document.
+TNM content is limited to the United States and territories.
 The map widget can be rendered on HTML pages generated from R Markdown, Shiny, or other applications.
 }
 \details{
-Map \href{https://apps.nationalmap.gov/services}{service endpoints}
-are offered through TNM with no use restrictions.
-However, map content is limited to the United States and territories.
-This function integrates TNM endpoint services within an interactive web map using
-\href{https://rstudio.github.io/leaflet/}{Leaflet for R}.
-
-TNM base maps include:
+Composite base maps include:
 \itemize{
-\item \code{Topo} combines the most current TNM data, and other public-domain data, into a multi-scale
-topographic reference map. Data includes boundaries, geographic names, transportation,
+\item "Topo" a tile base map that combines the most current TNM data,
+and other public-domain data, into a multi-scale topographic reference map.
+Data includes boundaries, geographic names, transportation,
 contours, hydrography, land cover, shaded relief, and bathymetry.\if{html}{\out{<br/>}}
 \if{latex}{\cr} \figure{basemap-topo.png}
-\item \verb{Imagery Only} is the orthoimagery in TNM. Orthoimagery data typically are high resolution aerial images
-that combine the visual attributes of an aerial photograph with the spatial accuracy and reliability of a
-planimetric map. USGS digital orthoimage resolution may vary from 6 inches to 1 meter.\if{html}{\out{<br/>}}
-\if{latex}{\cr} \figure{basemap-imagery-only.png}
-\item \verb{Imagery Topo} is the orthoimagery in TNM as a backdrop, and a limited selection of topographic data
+\item "Imagery" is a tile base map of orthoimagery in TNM.
+Orthoimagery data typically are high resolution aerial images that combine the
+visual attributes of an aerial photograph with the spatial accuracy and reliability of a planimetric map.
+USGS digital orthoimage resolution may vary from 6 inches to 1 meter.\if{html}{\out{<br/>}}
+\if{latex}{\cr} \figure{basemap-imagery.png}
+\item "Imagery Topo" is a tile base map of orthoimagery in TNM as a backdrop,
+and a limited selection of topographic data
 (boundaries, names, transportation, contours, and hydrography).\if{html}{\out{<br/>}}
 \if{latex}{\cr} \figure{basemap-imagery-topo.png}
-\item \code{Hydrography} is a cartographic representation of the
+\item "Hydrography" is a overlay of cartographic representation of the
 \href{https://www.usgs.gov/national-hydrography/national-hydrography-dataset}{National Hydrography Dataset} (NHD).
 The NHD is a comprehensive set of digital geospatial data that encodes information about naturally occurring
 and constructed bodies of surface water, paths through which water flows, related features such as
 stream gages and dams, and additional hydrologic information.\if{html}{\out{<br/>}}
 \if{latex}{\cr} \figure{basemap-hydrography.png}
-\item \verb{Shaded Relief} is a terrain representation in the form of hillshades created from the
+\item "Shaded Relief" is a tile base map of terrain representation in the form of hillshades created from the
 \href{https://www.usgs.gov/3d-elevation-program}{3D Elevation Program} (3DEP). 3DEP maintains a seamless dataset
 of best available raster elevation data, in the form of digital elevation models (DEMs) for the conterminous
 United States, Alaska, Hawaii, and Territorial Islands of the United States.\if{html}{\out{<br/>}}
 \if{latex}{\cr} \figure{basemap-shaded-relief.png}
-\item \code{Blank} consists of ocean tints to give the outline of land cover as an empty base map.\if{html}{\out{<br/>}}
+\item "OSM" is the \href{https://www.openstreetmap.org/about}{OpenStreetMap} tile base map.\if{html}{\out{<br/>}}
+\if{latex}{\cr} \figure{basemap-osm.png}
+\item "Blank" consists of ocean tints to give the outline of land cover as an empty base map.\if{html}{\out{<br/>}}
 \if{latex}{\cr} \figure{basemap-blank.png}
 }
 }
 \examples{
-# define arbitrary coordinate locations in decimal degrees
+# Create map widget
+map <- make_map()
+
+# Print map widget
+map
+
+# Print map with markers
 pts <- rbind(
   c(-112.049, 43.517),
   c(-122.171, 37.456),
@@ -84,16 +100,16 @@ pts <- rbind(
   c(-149.803, 61.187),
   c( -80.248, 26.080)
 )
+leaflet::addMarkers(map,
+  lng = pts[, 1],
+  lat = pts[, 2]
+)
 
-# create map widget and add markers at coordinate locations
-map <- make_map() |>
-  leaflet::addMarkers(pts[, 1], pts[, 2])
-
-# print map widget
-map
-
-# print map of satellite imagery with a rectangle in the vicinity of UCLA
-make_map(c("Imagery Only", "Topo"), collapse = TRUE) |>
+# Print map of satellite imagery with a rectangle in the vicinity of UCLA
+make_map(
+  maps = "Imagery",
+  collapse = TRUE
+) |>
   leaflet::addRectangles(
     lng1 = -118.456,
     lat1 =   34.078,

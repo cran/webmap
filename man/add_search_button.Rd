@@ -22,7 +22,7 @@ Map widget object}
 Name of the group whose features will be searched.}
 
 \item{property_name}{'character' string.
-Property name used to describe markers, such as, \code{"label"} and \code{"popup"}.}
+Property name used to describe markers, such as, "label" and "popup".}
 
 \item{zoom}{'integer' count.
 Zoom level for move to location after marker found in search.}
@@ -35,7 +35,7 @@ Whether to open the marker popup associated with the searched for marker.}
 
 \item{position}{'character' string.
 Position of the button on the web map.
-Possible values are \code{"topleft"}, \code{"topright"}, \code{"bottomleft"}, and \code{"bottomright"}.}
+Possible values are "topleft", "topright", "bottomleft", and "bottomright".}
 }
 \value{
 A new HTML web \code{map} with added element, an object of class 'leaflet'.
@@ -46,8 +46,7 @@ Functionality provided by the \href{https://github.com/stefanocudini/leaflet-sea
 plugin for Leaflet.
 }
 \examples{
-# create web map and add button to search city names
-map <- make_map("Topo") |>
+make_map(maps = "Topo") |>
   leaflet::addMarkers(
     lng = ~lng,
     lat = ~lat,
@@ -61,9 +60,6 @@ map <- make_map("Topo") |>
     zoom = 15,
     text_placeholder = "Search city names..."
   )
-
-# print web map
-map
 }
 \seealso{
 \code{\link{make_map}} function for creating a map widget.

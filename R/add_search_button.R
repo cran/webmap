@@ -10,7 +10,7 @@
 #' @param open_popup 'logical' flag.
 #'   Whether to open the marker popup associated with the searched for marker.
 #' @param property_name 'character' string.
-#'   Property name used to describe markers, such as, `"label"` and `"popup"`.
+#'   Property name used to describe markers, such as, "label" and "popup".
 #' @param text_placeholder 'character' string.
 #'   Message to show in search element.
 #' @param zoom 'integer' count.
@@ -25,8 +25,7 @@
 #' @export
 #'
 #' @examples
-#' # create web map and add button to search city names
-#' map <- make_map("Topo") |>
+#' make_map(maps = "Topo") |>
 #'   leaflet::addMarkers(
 #'     lng = ~lng,
 #'     lat = ~lat,
@@ -40,9 +39,6 @@
 #'     zoom = 15,
 #'     text_placeholder = "Search city names..."
 #'   )
-#'
-#' # print web map
-#' map
 
 add_search_button <- function(map,
                               group,

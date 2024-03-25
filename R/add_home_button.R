@@ -6,7 +6,7 @@
 #'   Map widget object
 #' @param position 'character' string.
 #'   Position of the button on the web map.
-#'   Possible values are `"topleft"`, `"topright"`, `"bottomleft"`, and `"bottomright"`.
+#'   Possible values are "topleft", "topright", "bottomleft", and "bottomright".
 #' @param extent 'bbox', or 'numeric' vector of length four, with `xmin`, `xmax`, `ymin` and `ymax` values.
 #'   Extent object representing a rectangular geographical area on the map.
 #'   The extent must be specified in the coordinate reference system (CRS) of the web map,
@@ -23,9 +23,9 @@
 #' @export
 #'
 #' @examples
-#' make_map("Topo") |>
+#' make_map(maps = "Topo") |>
 #'   add_home_button(
-#'     extent = c(-124.409591, -114.131211, 32.534156, 42.009518) # California
+#'     extent = c(-124.409, -114.131, 32.534, 42.009) # California
 #'   )
 
 add_home_button <- function(map,
