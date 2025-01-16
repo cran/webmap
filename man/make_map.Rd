@@ -45,7 +45,7 @@ Graphic layers added to the web map must be in latitude and longitude using WGS 
 \description{
 Create a \href{https://leafletjs.com/}{Leaflet} map widget that includes base maps offered through
 \href{https://www.usgs.gov/programs/national-geospatial-program/national-map}{The National Map} (TNM)
-cached \href{https://apps.nationalmap.gov/services}{service endpoints}.
+cached \href{https://apps.nationalmap.gov/services/}{service endpoints}.
 Information about the content of these base maps can be found within the
 \href{https://apps.nationalmap.gov/help/3.0\%20TNM\%20Base\%20Maps.htm}{TNM Base Maps} document.
 TNM content is limited to the United States and territories.

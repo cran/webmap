@@ -2,7 +2,7 @@
 #'
 #' Create a [Leaflet](https://leafletjs.com/) map widget that includes base maps offered through
 #' [The National Map](https://www.usgs.gov/programs/national-geospatial-program/national-map) (TNM)
-#' cached [service endpoints](https://apps.nationalmap.gov/services).
+#' cached [service endpoints](https://apps.nationalmap.gov/services/).
 #' Information about the content of these base maps can be found within the
 #' [TNM Base Maps](https://apps.nationalmap.gov/help/3.0%20TNM%20Base%20Maps.htm) document.
 #' TNM content is limited to the United States and territories.

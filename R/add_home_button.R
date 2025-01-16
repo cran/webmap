@@ -2,7 +2,7 @@
 #'
 #' Add a button to a [Leaflet](https://leafletjs.com/) map that zooms to the provided map extent.
 #'
-#' @param map '[leaflet]'.
+#' @param map 'leaflet'.
 #'   Map widget object
 #' @param position 'character' string.
 #'   Position of the button on the web map.
@@ -23,10 +23,9 @@
 #' @export
 #'
 #' @examples
+#' extent <- c(-124.409, -114.131, 32.534, 42.009) # California
 #' make_map(maps = "Topo") |>
-#'   add_home_button(
-#'     extent = c(-124.409, -114.131, 32.534, 42.009) # California
-#'   )
+#'   add_home_button(extent = extent)
 
 add_home_button <- function(map,
                             extent = NULL,

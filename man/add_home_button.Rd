@@ -7,7 +7,7 @@
 add_home_button(map, extent = NULL, position = "topleft")
 }
 \arguments{
-\item{map}{'\link{leaflet}'.
+\item{map}{'leaflet'.
 Map widget object}
 
 \item{extent}{'bbox', or 'numeric' vector of length four, with \code{xmin}, \code{xmax}, \code{ymin} and \code{ymax} values.
@@ -28,10 +28,9 @@ A new HTML web \code{map} with added element, an object of class 'leaflet'.
 Add a button to a \href{https://leafletjs.com/}{Leaflet} map that zooms to the provided map extent.
 }
 \examples{
+extent <- c(-124.409, -114.131, 32.534, 42.009) # California
 make_map(maps = "Topo") |>
-  add_home_button(
-    extent = c(-124.409, -114.131, 32.534, 42.009) # California
-  )
+  add_home_button(extent = extent)
 }
 \seealso{
 \code{\link{make_map}} function for creating a map widget.

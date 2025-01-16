@@ -15,7 +15,7 @@ add_search_button(
 )
 }
 \arguments{
-\item{map}{'\link{leaflet}'.
+\item{map}{'leaflet'.
 Map widget object}
 
 \item{group}{'character' string.

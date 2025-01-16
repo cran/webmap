@@ -7,7 +7,7 @@
 add_fullscreen_button(map, pseudo_fullscreen = FALSE, position = "topleft")
 }
 \arguments{
-\item{map}{'\link{leaflet}'.
+\item{map}{'leaflet'.
 Map widget object}
 
 \item{pseudo_fullscreen}{'logical' flag.

@@ -16,7 +16,7 @@ add_legend(
 )
 }
 \arguments{
-\item{map}{'\link{leaflet}'.
+\item{map}{'leaflet'.
 Map widget object}
 
 \item{labels}{'character' vector.
@@ -48,7 +48,7 @@ A new HTML web \code{map} with added element, an object of class 'leaflet'.
 Add a legend to a \href{https://leafletjs.com/}{Leaflet} map.
 }
 \examples{
-# define marker colors based on whether a city serves as a capital
+# Define marker colors based on whether a city serves as a capital
 colors <- c(
   "Non-capital" = "green",
   "Capital" = "red"
@@ -56,7 +56,7 @@ colors <- c(
 fill_colors <- colors[(us_cities$capital > 0) + 1L] |>
   as.character()
 
-# print map with city circle markers and a map legend
+# Print map with city circle markers and a map legend
 make_map(maps = "Topo") |>
   leaflet::addCircleMarkers(
     lng = ~lng,

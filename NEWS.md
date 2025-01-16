@@ -1,3 +1,7 @@
+# webmap 1.1.1
+
+* Fixed Rd files with `link{}` targets missing a package anchor by removing link.
+
 # webmap 1.1.0
 
 * Add [OpenStreetMap](https://www.openstreetmap.org/about) (OSM) tiled base map.

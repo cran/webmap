@@ -6,21 +6,28 @@
 
 ## Description
 
-The **webmap** package in [R](https://www.r-project.org/) is a tool that
-leverages the JavaScript [Leaflet](https://leafletjs.com/) library to
-create dynamic web maps. It includes base layers from [The National
+The **webmap** package in [R](https://www.r-project.org/) leverages the
+JavaScript [Leaflet](https://leafletjs.com/) library to create dynamic
+web maps. It seamlessly integrates with base layers provided by [The
+National
 Map](https://www.usgs.gov/programs/national-geospatial-program/national-map)
-(TNM), which provides access to geospatial information about the
-landscape of the United States and its territories. However, it is
-important to note that base layers outside these areas are unavailable
-at higher spatial scales. While [TNM
-services](https://apps.nationalmap.gov/services/) are consistently
-[monitored](https://stats.uptimerobot.com/gxzRZFARLZ) for reliability,
-their availability outside of standard government working hours cannot
-be guaranteed. The **webmap** package is designed to work in conjunction
-with the [Leaflet for R](https://rstudio.github.io/leaflet/) package.
-Furthermore, it comes equipped with a variety of utility functions that
-enable you to enhance your web map with additional features.
+(TNM), offering essential geospatial information about the landscapes of
+the United States and its territories.
+
+Users should be aware that detailed base layers for areas outside the
+United States may not be available at higher spatial scales. While The
+National Map [services](https://apps.nationalmap.gov/services/) are
+continuously [monitored](https://stats.uptimerobot.com/gxzRZFARLZ) for
+reliability, availability outside of standard government working hours
+cannot be assured.
+
+Designed to complement the [Leaflet for
+R](https://rstudio.github.io/leaflet/) package, the **webmap** package
+enhances mapping capabilities by providing a range of utility functions
+that allow users to enrich their web maps with additional features,
+resulting in engaging and effective visualizations. This makes the
+process of creating impactful web maps both straightforward and
+accessible for users of varying skill levels.
 
 ## Installation
 
@@ -39,14 +46,13 @@ to run examples in the package help documentation, run:
 install.packages("webmap", dependencies = TRUE)
 ```
 
-To install the development version of the package, you need to clone the
-repository and build from source, or run the following commands:
+To install the development version of the package, you can either clone
+the repository and build it from source, or run the following commands.
+Make sure the **remotes** package for R is installed.
 
 ``` r
-if (!requireNamespace("remotes")) install.packages("remotes")
 remotes::install_gitlab(
   repo = "inl/webmap@develop",
-  auth_token = Sys.getenv("GITLAB_PAT"),
   host = "code.usgs.gov",
   dependencies = TRUE
 )
@@ -56,7 +62,7 @@ After installing the package, you can use it in various contexts,
 including the R console, [R Markdown](https://rmarkdown.rstudio.com/)
 documents, and [Shiny](https://shiny.posit.co/) applications.
 
-## Basic Usage
+## Usage
 
 To create the default web map and display it (the screenshot below
 showns the default web map), you can run the following commands:
@@ -80,12 +86,12 @@ help(package = "webmap")
 
 ## Authors
 
--   Jason C. Fisher (ORCID iD
-    [0000-0001-9032-8912](https://orcid.org/0000-0001-9032-8912))
--   Stefano Cudini ([leaflet-search
-    library](https://github.com/stefanocudini/leaflet-search))
--   John Firebaugh ([Leaflet.fullscreen
-    library](https://github.com/Leaflet/Leaflet.fullscreen))
+- Jason C. Fisher (ORCID iD
+  [0000-0001-9032-8912](https://orcid.org/0000-0001-9032-8912))
+- Stefano Cudini ([leaflet-search
+  library](https://github.com/stefanocudini/leaflet-search))
+- John Firebaugh ([Leaflet.fullscreen
+  library](https://github.com/Leaflet/Leaflet.fullscreen))
 
 ## Point of Contact
 
@@ -199,7 +205,7 @@ Year published
 Version
 </th>
 <td>
-1.0.0
+<a href='https://code.usgs.gov/inl/mlms/-/tree/v1.0.0'>1.0.0</a>
 </td>
 </tr>
 <tr>

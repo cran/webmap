@@ -7,7 +7,7 @@
 add_cluster_button(map, cluster_id, position = "topleft")
 }
 \arguments{
-\item{map}{'\link{leaflet}'.
+\item{map}{'leaflet'.
 Map widget object}
 
 \item{cluster_id}{'character' string.
